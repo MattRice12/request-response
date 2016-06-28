@@ -54,10 +54,23 @@ loop do
   else
     @request = parse(raw_request)
     @params  = @request[:params]
-    # Use the @request and @params ivars to full the request and
-    # return an appropriate response
+    # Use the @request and @params ivars to full the request and return an appropriate response
 
     # YOUR CODE GOES BELOW HERE
+
+    users = [
+      { :first_name=>"Bob", :last_name=>"Bobson", :age=>69 }
+      { :first_name=>"Tom", :last_name=>"Thompson", :age=>17 }
+      { :first_name=>"Jon", :last_name=>"Johnson", :age=>33 }
+    ]
+
+    
+
+
+
+
+
+
 
     puts @request.inspect
     # YOUR CODE GOES ABOVE HERE  ^
