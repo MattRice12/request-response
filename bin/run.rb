@@ -71,7 +71,23 @@ class Server
           User.new("Bob", "Bobson", "69"),
           User.new("Tom", "Thompson", "17"),
           User.new("Jon", "Johnson", "33"),
-          User.new("Sam", "Sampson", "239")
+          User.new("Sam", "Sampson", "239"),
+          User.new("Aaron", "Ankles", "42"),
+          User.new("Beardy", "Moustache", "22"),
+          User.new("Carly", "Confetti", "16"),
+          User.new("David", "Divad", "40"),
+          User.new("Eric", "Elephant", "99"),
+          User.new("Facey", "McFace", "39"),
+          User.new("Gary", "Gorillahands", "1"),
+          User.new("Happy", "McSad", "21"),
+          User.new("Ingrid", "Icebutt", "55"),
+          User.new("Julie", "Jorleandriclandermanduh", "61"),
+          User.new("Kandi", "Krush", "18"),
+          User.new("Lemon", "Party", "69"),
+          User.new("Matthew", "Matthews", "0"),
+          User.new("Nathaniel", "Leinahtan", "14"),
+          User.new("Oprah", "Losefrey", "49"),
+          User.new("Pepper", "Roni", "10101")
         ]
         @request = Parser.new.parse(raw_request)
         @params  = @request[:params]
@@ -85,6 +101,7 @@ class Server
 # GET http://localhost:3000/users/1 HTTP/1.1
 # GET http://localhost:3000/users/9999999 HTTP/1.1
 # GET http://localhost:3000/users?first_name=s
+# GET http://localhost:3000/users?limit=10&offset=10
 
         if response[:params][:resource] == "users"
           if (response[:params][:id].to_i) > users.count
