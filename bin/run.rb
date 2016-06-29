@@ -86,7 +86,7 @@ loop do
       end
 
     rescue StandardError => error
-      puts "500 Server Error"
+      raise "500 Server Error"
       puts
       puts error.inspect
     end
