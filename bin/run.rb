@@ -100,24 +100,24 @@ class Server
 # GET http://localhost:3000/users HTTP/1.1
 # GET http://localhost:3000/users/1 HTTP/1.1
 # GET http://localhost:3000/users/9999999 HTTP/1.1
-# GET http://localhost:3000/users?first_name=s
 # GET http://localhost:3000/users?limit=10&offset=10
 
-        if response[:params][:resource] == "users"
+        if response[:params][:resource] == "users" #404 error if users requested is > users listed
           if (response[:params][:id].to_i) > users.count
             puts
             puts "404 NOT FOUND"
-          elsif response[:params][:id]
+
+          elsif response[:params][:id] #selects user at position stated in :id
             res_body = users[response[:params][:id].to_i - 1]
             puts
             puts "#{res_body.first_name} #{res_body.last_name}, age: #{res_body.age}"
 
-          # elsif response[:params][:first_name]
-          #   users.each do |first_name|
-          #     first_name.each do |first_letter|
-          #       first_letter = user
-
-          else
+          elsif response[:params][:limit] #selects everyone but after users stated by :limit
+            after_ten = response[:params][:limit].to_i
+              users[after_ten..-1].select.with_index do |user, index|
+                puts "#{index + after_ten + 1} - #{user.first_name} #{user.last_name}, age: #{user.age}"
+              end
+          else # lists all users
             puts
             users.each.with_index do |user, index|
               puts "#{index + 1} - #{user.first_name} #{user.last_name}, age: #{user.age}"
@@ -125,7 +125,7 @@ class Server
           end
         end
 
-      rescue StandardError => error
+      rescue StandardError => error #500 error when something breaks
         raise "500 Server Error"
         puts
         puts error.inspect
